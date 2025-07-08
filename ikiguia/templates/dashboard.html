@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Bienvenido, {{ user.username }} 🎉</h2>
+<p>Este es tu panel personal. Pronto podrás acceder a tus tests y resultados.</p>
+{% if user.testresult_set.last %}
+ <h3>Último resultado del test:</h3>
+<ul>
+  {% with respuestas=user.testresult_set.last.respuestas %}
+    <li><strong>Me gusta trabajar en equipo:</strong> {{ respuestas.pregunta1 }}/5</li>
+    <li><strong>Disfruto resolver problemas complejos:</strong> {{ respuestas.pregunta2 }}/5</li>
+    <li><strong>Prefiero tareas prácticas y manuales:</strong> {{ respuestas.pregunta3 }}/5</li>
+    <li><strong>Me interesan los temas científicos:</strong> {{ respuestas.pregunta4 }}/5</li>
+    <li><strong>Me gusta ayudar a otras personas:</strong> {{ respuestas.pregunta5 }}/5</li>
+  {% endwith %}
+</ul>
+{% if analisis %}
+  <h3>Análisis de tu perfil:</h3>
+  <p>{{ analisis }}</p>
+{% endif %}
+
+{% else %}
+  <p>No has completado ningún test aún.</p>
+{% endif %}
+{% if user.ikigairesult_set.last %}
+  <section class="ikigai-panel">
+    <h3>🧭 Tu Mapa IKIGAI Personal</h3>
+
+    <div class="ikigai-dimension">
+      <h4>❤️ Lo que amas</h4>
+      {% for item in ikigai.ama %}
+        <p>{{ item }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="ikigai-dimension">
+      <h4>💪 Lo que haces bien</h4>
+      {% for item in ikigai.bueno %}
+        <p>{{ item }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="ikigai-dimension">
+      <h4>💰 Por lo que pueden pagarte</h4>
+      {% for item in ikigai.pagado %}
+        <p>{{ item }}</p>
+      {% endfor %}
+    </div>
+
+    <div class="ikigai-dimension">
+      <h4>🌍 Lo que el mundo necesita</h4>
+      {% for item in ikigai.necesario %}
+        <p>{{ item }}</p>
+      {% endfor %}
+    </div>
+  </section>
+{% else %}
+  <p>Aún no has completado el test IKIGAI.</p>
+{% endif %}
+
+
+{% endblock %}
