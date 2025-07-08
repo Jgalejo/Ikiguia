@@ -1,6 +1,64 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block content %}
-  <h2>Bienvenido a Ikiguía</h2>
-  <p>La plataforma que te acompaña en tu camino vocacional.</p>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ikiguía</title>
+  <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">IK</div>
+    <h1 class="brand">IKIGUIA</h1>
+    <nav class="nav">
+      <a href="#">Contacto</a>
+      <a href="#">Mentores</a>
+      <a href="#">Carreras</a>
+      <a href="#">Tests</a>
+      <a href="#">Inicio</a>
+    </nav>
+    <div class="actions">
+      <button class="btn-outline">Iniciar Sesión</button>
+      <button class="btn-primary">Registrarse</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="tagline">Descubre Tu Camino Profesional</span>
+      <h2>Encuentra Tu Propósito Profesional con Ikiguía</h2>
+      <p>Descubre tu vocación con IA, tests psicométricos y mentorías virtuales</p>
+      <button class="btn-primary">Comenzar Ahora →</button>
+    </div>
+    <div class="hero-image">
+      <img src="{% static 'img/ilustracion.png' %}" alt="Ilustración vocacional" />
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section class="features">
+    <h3>¿Qué puedes hacer con Ikigúia?</h3>
+    <p>Explora tu vocación con herramientas que combinan ciencia, propósito y tecnología</p>
+    <div class="cards">
+      <div class="card">
+        <h4>🧠 Test Psicométrico</h4>
+        <p>Evalúa tu perfil con preguntas basadas en psicología y ciencia vocacional.</p>
+      </div>
+      <div class="card">
+        <h4>🎯 Recomendaciones de Carrera</h4>
+        <p>Descubre profesiones alineadas a tus pasiones e intereses.</p>
+      </div>
+      <div class="card">
+        <h4>💬 Mentorías Virtuales</h4>
+        <p>Agenda sesiones con expertos para guiar tu camino profesional.</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
