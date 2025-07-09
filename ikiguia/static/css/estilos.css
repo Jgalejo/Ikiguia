@@ -369,3 +369,406 @@ form button:hover {
   height: auto;
   border-radius: 8px;
 }
+/* Variables CSS para mantener consistencia */
+:root {
+  --primary-orange: #FF8A65;
+  --primary-blue: #1A237E;
+  --text-gray: #666666;
+  --bg-white: #FFFFFF;
+  --border-gray: #E0E0E0;
+  --shadow-light: rgba(26, 35, 126, 0.08);
+  --shadow-medium: rgba(26, 35, 126, 0.12);
+  --gradient-primary: linear-gradient(135deg, #FF8A65 0%, #FF7043 100%);
+  --gradient-secondary: linear-gradient(135deg, #1A237E 0%, #283593 100%);
+}
+
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  color: var(--text-gray);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeInUp 0.8s ease-out;
+  text-align: center;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Títulos principales */
+h2 {
+  color: var(--primary-blue);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: slideIn 0.8s ease-out 0.2s both;
+  text-align: center;
+}
+
+/* Subtítulos */
+h3 {
+  color: var(--primary-blue);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+  position: relative;
+  padding-left: 1rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+h4 {
+  color: var(--primary-blue);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Párrafos */
+p {
+  color: var(--text-gray);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  animation: slideIn 0.8s ease-out 0.4s both;
+  text-align: center;
+}
+
+/* Tarjetas modernas */
+.card {
+  background: var(--bg-white);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px var(--shadow-light);
+  border: 1px solid var(--border-gray);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px var(--shadow-medium);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Lista de resultados del test */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+li {
+  background: var(--bg-white);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--primary-orange);
+  box-shadow: 0 2px 10px var(--shadow-light);
+  transition: all 0.3s ease;
+  animation: slideIn 0.6s ease-out calc(var(--index, 0) * 0.1s) both;
+  text-align: center;
+}
+
+li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px var(--shadow-medium);
+}
+
+li strong {
+  color: var(--primary-blue);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* Sección IKIGAI */
+.ikigai-panel {
+  background: var(--bg-white);
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 6px 25px var(--shadow-light);
+  border: 1px solid var(--border-gray);
+  position: relative;
+  overflow: hidden;
+}
+
+.ikigai-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: var(--gradient-primary);
+}
+
+.ikigai-panel h3 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: var(--primary-blue);
+  background: var(--gradient-secondary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ikigai-dimension {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 16px;
+  padding: 1.8rem;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border-gray);
+  transition: all 0.3s ease;
+  animation: slideIn 0.8s ease-out calc(var(--index, 0) * 0.2s) both;
+}
+
+.ikigai-dimension:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px var(--shadow-medium);
+}
+
+.ikigai-dimension h4 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--primary-blue);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-orange);
+}
+
+.ikigai-dimension p {
+  color: var(--text-gray);
+  font-size: 1.05rem;
+  margin-bottom: 0.8rem;
+  padding-left: 1rem;
+  position: relative;
+  text-align: left;
+}
+
+.ikigai-dimension p::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--primary-orange);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Mensaje de no completado */
+.no-results {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+  border-radius: 16px;
+  border: 2px dashed var(--border-gray);
+  margin: 2rem 0;
+  animation: pulse 2s infinite;
+}
+
+.no-results p {
+  color: var(--text-gray);
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Botones (si los necesitas) */
+.btn {
+  display: inline-block;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(255, 138, 101, 0.3);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 138, 101, 0.4);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Grid responsivo para las dimensiones IKIGAI */
+@media (min-width: 768px) {
+  .ikigai-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .ikigai-dimension {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ikigai-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 1rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .ikigai-panel {
+    padding: 1.5rem;
+  }
+  
+  .ikigai-dimension {
+    padding: 1.2rem;
+  }
+}
+
+/* Efectos adicionales */
+.highlight {
+  background: linear-gradient(135deg, rgba(255, 138, 101, 0.1) 0%, rgba(255, 138, 101, 0.05) 100%);
+  border-radius: 8px;
+  padding: 0.2rem 0.5rem;
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+/* Animación de aparición escalonada para las dimensiones IKIGAI */
+.ikigai-dimension:nth-child(1) { --index: 0; }
+.ikigai-dimension:nth-child(2) { --index: 1; }
+.ikigai-dimension:nth-child(3) { --index: 2; }
+.ikigai-dimension:nth-child(4) { --index: 3; }
+
+/* Estilo para los items de la lista con índice */
+li:nth-child(1) { --index: 0; }
+li:nth-child(2) { --index: 1; }
+li:nth-child(3) { --index: 2; }
+li:nth-child(4) { --index: 3; }
+li:nth-child(5) { --index: 4; }
+
+/* Efectos de hover mejorados */
+.ikigai-dimension:hover h4 {
+  color: var(--primary-orange);
+  transition: color 0.3s ease;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--border-gray);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-orange);
+}

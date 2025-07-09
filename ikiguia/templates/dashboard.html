@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% block nav %}{% endblock %}
 <h2>Bienvenido, {{ user.username }} 🎉</h2>
 <p>Este es tu panel personal. Pronto podrás acceder a tus tests y resultados.</p>
 {% if user.testresult_set.last %}
