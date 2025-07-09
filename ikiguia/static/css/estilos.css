@@ -152,3 +152,110 @@ body {
   max-width: 300px;
   text-align: left;
 }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.formulario {
+  flex: 1;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7ff;
+  border-right: 2px solid #e0e0e0;
+}
+
+.formulario h2 {
+  font-size: 2rem;
+  color: #1f2d5a;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.ikiguia {
+  color: #1f2d5a;
+  font-weight: 700;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.btn-iniciar {
+  padding: 0.8rem 2rem;
+  background-color: #f98461;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-iniciar:hover {
+  background-color: #e3704c;
+}
+
+.acciones {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.olvido {
+  color: #888;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.registro {
+  color: #1f2d5a;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.registro:hover {
+  text-decoration: underline;
+}
+
+.imagen-lado {
+  flex: 1;
+  background-color: #1f2d5a;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagen-lado h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.img-ilustracion {
+  max-width: 80%;
+  height: auto;
+}

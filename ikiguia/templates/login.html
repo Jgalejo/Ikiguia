@@ -1,9 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}{% endblock %}
+
 {% block content %}
-<h2>Iniciar sesión</h2>
-<form method="POST">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Entrar</button>
-</form>
+<div class="contenedor-principal">
+  <div class="formulario">
+    <h2>Iniciar sesión en <span class="ikiguia">Ikiguía</span></h2>
+    <form method="POST">
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-group">
+          {{ field.label_tag }}
+          {{ field }}
+          {% if field.errors %}
+            <div class="errorlist">{{ field.errors }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <button type="submit" class="btn-iniciar">Iniciar Sesión</button>
+    </form>
+    <div class="acciones">
+      <a href="#" class="olvido">&#xbf;Olvidaste tu contraseña?</a><br>
+      <a href="{% url 'registro' %}" class="registro">&#xbf;No tienes cuenta? Registrarse</a>
+    </div>
+  </div>
+
+  <div class="imagen-lado">
+    <h3>Tu futuro comienza hoy con <span class="ikiguia">Ikigúía</span></h3>
+    <img src="{% static 'img/direccion.png' %}" alt="Ilustración de señales y personas" class="img-ilustracion">
+  </div>
+</div>
 {% endblock %}
