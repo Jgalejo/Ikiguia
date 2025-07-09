@@ -15,15 +15,16 @@
     <div class="logo">IK</div>
     <h1 class="brand">IKIGUIA</h1>
     <nav class="nav">
-      <a href="#">Contacto</a>
+      <a href="{% url 'contacto'%}">Contacto</a>
       <a href="#">Mentores</a>
-      <a href="#">Carreras</a>
-      <a href="#">Tests</a>
-      <a href="#">Inicio</a>
+      <a href="{% url 'carreras' %}">Carreras</a>
+      <a href="{% url 'test' %}">Tests</a>
+      <a href="{% url 'dashboard' %}">Inicio</a>
     </nav>
     <div class="actions">
-      <button class="btn-outline">Iniciar Sesión</button>
-      <button class="btn-primary">Registrarse</button>
+
+      <a href="{% url 'login' %}" class="btn-outline">Iniciar Sesión</a>
+      <a href="{% url 'registro' %}" class="btn-primary">Registrarse</a>
     </div>
   </header>
 
@@ -33,7 +34,7 @@
       <span class="tagline">Descubre Tu Camino Profesional</span>
       <h2>Encuentra Tu Propósito Profesional con Ikiguía</h2>
       <p>Descubre tu vocación con IA, tests psicométricos y mentorías virtuales</p>
-      <button class="btn-primary">Comenzar Ahora →</button>
+      <a href="{% url 'registro' %}" class="btn-primary">Comenzar Ahora →</a>
     </div>
     <div class="hero-image">
       <img src="{% static 'img/ilustracion.png' %}" alt="Ilustración vocacional" />

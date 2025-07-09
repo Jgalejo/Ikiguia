@@ -1,0 +1,199 @@
+/* dashboard.css */
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.content-wrapper h2 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.content-wrapper h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+}
+
+.carreras-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.carrera-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.carrera-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+.carrera-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.carrera-card h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.carrera-card p {
+  color: #5a6c7d;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.carrera-card p strong {
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* Mensaje cuando no hay carreras */
+.content-wrapper > p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  background: white;
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-top: 2rem;
+  border-left: 5px solid #667eea;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 1rem;
+  }
+  
+  .content-wrapper h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .carreras-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .carrera-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper h2 {
+    font-size: 1.7rem;
+  }
+  
+  .carrera-card h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Animaciones adicionales */
+.carrera-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.carrera-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.carrera-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.carrera-card:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de loading para cuando se cargan las carreras */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Mejoras visuales adicionales */
+.content-wrapper::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Hover effects para mejor UX */
+.carrera-card:hover h3 {
+  color: #667eea;
+  transition: color 0.3s ease;
+}
+
+.carrera-card:hover::before {
+  background: linear-gradient(90deg, #667eea 0%, #f093fb 100%);
+  transition: background 0.3s ease;
+}

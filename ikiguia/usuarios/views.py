@@ -11,6 +11,9 @@ from .models import IkigaiResult
 from .models import Carrera
 from django.db.models import Q
 
+
+
+
 def home(request):
     return render(request, 'home.html')
 
@@ -23,6 +26,11 @@ def registro(request):
     else:
         form = UserCreationForm()
     return render(request, 'registro.html', {'form': form})
+
+
+def contacto(request):
+    return render(request, 'contacto.html')
+
 
 def iniciar_sesion(request):
     if request.method == 'POST':
