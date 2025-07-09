@@ -8,7 +8,13 @@ PREGUNTAS = [
     ("pregunta5", "Me gusta ayudar a otras personas"),
 ]
 
-OPCIONES = [(i, str(i)) for i in range(1, 6)]  # Escala 1 a 5
+OPCIONES = [
+    (1, "1 - Totalmente en desacuerdo"),
+    (2, "2 - En desacuerdo"),
+    (3, "3 - Neutral"),
+    (4, "4 - De acuerdo"),
+    (5, "5 - Totalmente de acuerdo")
+]
 
 class TestForm(forms.Form):
     def __init__(self, *args, **kwargs):
