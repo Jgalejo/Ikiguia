@@ -126,3 +126,9 @@ p strong {
         width: 70px;
     }
 }
+.logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 170px;
+    height: auto;
+}

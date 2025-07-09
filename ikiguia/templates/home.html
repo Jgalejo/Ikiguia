@@ -5,26 +5,472 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ikiguía</title>
-  <link rel="stylesheet" href="{% static 'css/estilos.css' %}" />
+  <title>Ikiguía - Descubre tu vocación profesional</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset y fuentes */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: #000;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: 90px; /* Espacio para el header fijo */
+    }
+
+    /* Colores base */
+    :root {
+      --blue-dark: #0f1e63;
+      --blue-light: #1f3a94;
+      --orange: #ff7a59;
+      --orange-light: #ff9a80;
+      --light-purple: #d1ccf2;
+      --gray: #6b7280;
+      --light-gray: #f5f7fa;
+      --gradient-blue: linear-gradient(135deg, #0f1e63, #1f3a94);
+    }
+
+    /* Header - Logo grande y fijo */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      background-color: #fff;
+      border-bottom: 1px solid #eee;
+      position: fixed; /* Cambiado de sticky a fixed */
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+      height: 90px; /* Altura fija */
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .brand-image {
+      height: 175px; /* Tamaño aumentado significativamente */
+      width: auto;
+      transition: transform 0.3s ease;
+      object-fit: contain;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1.8rem;
+      height: 100%;
+      align-items: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #000;
+      font-size: 1.15rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      position: relative;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .nav a:hover {
+      color: var(--blue-dark);
+    }
+
+    .nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background-color: var(--orange);
+      transition: width 0.3s ease;
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      height: 100%;
+    }
+
+    .btn-outline {
+      border: 2px solid var(--blue-dark);
+      background: transparent;
+      color: var(--blue-dark);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background-color: var(--blue-dark);
+      color: white;
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 122, 89, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(15, 30, 99, 0.3);
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      background: var(--gradient-blue);
+      color: #fff;
+      padding: 6rem 3rem;
+      flex-wrap: wrap;
+      min-height: calc(100vh - 90px); /* Ajuste por el header fijo */
+      align-items: center;
+    }
+
+    /* Resto del CSS permanece igual... */
+    .hero-content {
+      flex: 1 1 50%;
+      max-width: 650px;
+      padding: 2rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero-content h2 {
+      font-size: 3.2rem;
+      margin: 1.8rem 0;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .hero-content p {
+      color: var(--light-purple);
+      margin-bottom: 2.5rem;
+      font-size: 1.6rem;
+      line-height: 1.7;
+    }
+
+    .tagline {
+      background-color: var(--orange);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.5rem;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    .hero-image {
+      flex: 1 1 40%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 1s ease, float 6s ease-in-out infinite;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      transform: perspective(1000px) rotateY(5deg);
+    }
+
+    /* Features Section */
+    .features {
+      text-align: center;
+      padding: 7rem 2rem;
+      background-color: var(--light-gray);
+    }
+
+    .features h3 {
+      color: var(--blue-dark);
+      font-size: 2.7rem;
+      margin-bottom: 1.8rem;
+      font-weight: 800;
+    }
+
+    .features p {
+      color: var(--gray);
+      margin-bottom: 4.5rem;
+      font-size: 1.6rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #fff;
+      padding: 2.8rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.1);
+      flex: 1 1 320px;
+      max-width: 380px;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: none;
+    }
+
+    .card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+    }
+
+    .card h4 {
+      font-size: 1.9rem;
+      margin: 1.8rem 0;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+
+    .card p {
+      font-size: 1.3rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .card-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.8rem;
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) perspective(1000px) rotateY(5deg);
+      }
+      50% {
+        transform: translateY(-20px) perspective(1000px) rotateY(5deg);
+      }
+      100% {
+        transform: translateY(0px) perspective(1000px) rotateY(5deg);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 89, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 20px rgba(255, 122, 89, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 122, 89, 0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .header {
+        padding: 0 2rem;
+      }
+      
+      .hero {
+        padding: 5rem 2rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .hero-content, .hero-image {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+      
+      .hero-image {
+        margin-top: 4rem;
+        max-width: 600px;
+      }
+      
+      .nav {
+        display: none;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 0 1rem;
+        height: 80px;
+      }
+      
+      .brand-image {
+        height: 60px;
+      }
+      
+      body {
+        padding-top: 80px;
+      }
+      
+      .hero-content h2 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-content p, .features p {
+        font-size: 1.4rem;
+      }
+      
+      .tagline {
+        font-size: 1.3rem;
+      }
+      
+      .card {
+        padding: 2.2rem;
+      }
+      
+      .card h4 {
+        font-size: 1.7rem;
+      }
+      
+      .card p {
+        font-size: 1.2rem;
+      }
+      
+      .actions {
+        gap: 0.8rem;
+      }
+      
+      .btn-outline, .btn-primary {
+        padding: 0.7rem 1.3rem;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero {
+        padding: 4rem 1.5rem;
+      }
+      
+      .features {
+        padding: 5rem 1.5rem;
+      }
+      
+      .hero-content h2 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.3rem;
+      }
+      
+      .brand-image {
+        height: 50px;
+      }
+      
+      .actions {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .btn-outline, .btn-primary {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Header con logo grande y fijo -->
   <header class="header">
-    <div class="logo">IK</div>
-    <h1 class="brand">IKIGUIA</h1>
-    <nav class="nav">
-      <a href="{% url 'contacto'%}">Contacto</a>
-      <a href="#">Mentores</a>
-      <a href="{% url 'carreras' %}">Carreras</a>
-      <a href="{% url 'test' %}">Tests</a>
-      <a href="{% url 'dashboard' %}">Inicio</a>
-    </nav>
+    <div class="logo-container">
+      <img src="{% static 'img/Logotipo de IKIGUIA.png' %}" alt="Ikiguía" class="brand-image">
+    </div>
+    
+    <div class="nav-container">
+      <nav class="nav">
+        <a href="{% url 'contacto'%}"><i class="fas fa-envelope"></i> Contacto</a>
+        <a href="#"><i class="fas fa-chalkboard-teacher"></i> Mentores</a>
+        <a href="{% url 'carreras' %}"><i class="fas fa-graduation-cap"></i> Carreras</a>
+        <a href="{% url 'test' %}"><i class="fas fa-clipboard-list"></i> Tests</a>
+        <a href="{% url 'dashboard' %}"><i class="fas fa-home"></i> Inicio</a>
+        <a href="{% url 'QSomos' %}"><i class="fas fa-users"></i> Quienes Somos</a>
+      </nav>
+    </div>
+    
     <div class="actions">
-
-      <a href="{% url 'login' %}" class="btn-outline">Iniciar Sesión</a>
-      <a href="{% url 'registro' %}" class="btn-primary">Registrarse</a>
+      <a href="{% url 'login' %}" class="btn-outline"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+      <a href="{% url 'registro' %}" class="btn-primary"><i class="fas fa-user-plus"></i> Registrarse</a>
     </div>
   </header>
 
@@ -34,10 +480,16 @@
       <span class="tagline">Descubre Tu Camino Profesional</span>
       <h2>Encuentra Tu Propósito Profesional con Ikiguía</h2>
       <p>Descubre tu vocación con IA, tests psicométricos y mentorías virtuales</p>
-      <a href="{% url 'registro' %}" class="btn-primary">Comenzar Ahora →</a>
+      <a href="{% url 'registro' %}" class="btn-primary">Comenzar Ahora <i class="fas fa-arrow-right"></i></a>
     </div>
     <div class="hero-image">
-      <img src="{% static 'img/ilustracion.png' %}" alt="Ilustración vocacional" />
+      <div style="background: linear-gradient(135deg, #6a5af9, #d66efd); width: 100%; max-width: 550px; height: 400px; border-radius: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200') center/cover; opacity: 0.9; mix-blend-mode: multiply;"></div>
+        <div style="position: relative; z-index: 2; color: white; text-align: center; padding: 2rem;">
+          <h3 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.2);">Ilustración vocacional</h3>
+          <p style="font-size: 1.4rem; max-width: 400px; line-height: 1.6; text-shadow: 0 2px 5px rgba(0,0,0,0.2);">Descubre tu verdadera pasión con nuestra plataforma</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -47,16 +499,19 @@
     <p>Explora tu vocación con herramientas que combinan ciencia, propósito y tecnología</p>
     <div class="cards">
       <div class="card">
-        <h4>🧠 Test Psicométrico</h4>
-        <p>Evalúa tu perfil con preguntas basadas en psicología y ciencia vocacional.</p>
+        <div class="card-icon">🧠</div>
+        <h4>Test Psicométrico</h4>
+        <p>Evalúa tu perfil con preguntas basadas en psicología y ciencia vocacional para identificar tus fortalezas y áreas de interés.</p>
       </div>
       <div class="card">
-        <h4>🎯 Recomendaciones de Carrera</h4>
-        <p>Descubre profesiones alineadas a tus pasiones e intereses.</p>
+        <div class="card-icon">🎯</div>
+        <h4>Recomendaciones de Carrera</h4>
+        <p>Descubre profesiones alineadas a tus pasiones, habilidades e intereses con nuestra tecnología de inteligencia artificial.</p>
       </div>
       <div class="card">
-        <h4>💬 Mentorías Virtuales</h4>
-        <p>Agenda sesiones con expertos para guiar tu camino profesional.</p>
+        <div class="card-icon">💬</div>
+        <h4>Mentorías Virtuales</h4>
+        <p>Agenda sesiones personalizadas con expertos que te guiarán en tu camino profesional hacia el éxito.</p>
       </div>
     </div>
   </section>

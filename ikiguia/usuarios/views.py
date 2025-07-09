@@ -31,6 +31,9 @@ def registro(request):
 def contacto(request):
     return render(request, 'contacto.html')
 
+def Qsomos(request):
+    return render(request, 'QSomos.html')
+
 
 def iniciar_sesion(request):
     if request.method == 'POST':

@@ -87,3 +87,9 @@ body {
 p {
     animation: fadeIn 0.7s ease-out;
 }
+.logoc {
+    display: block;
+    margin: 0 auto 10px auto; /* Reducción del margen inferior (de 100px a 20px) */
+    max-width: 250px;
+    height: auto;
+}
