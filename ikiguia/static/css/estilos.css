@@ -259,3 +259,113 @@ form input[type="email"] {
   max-width: 80%;
   height: auto;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.form-container {
+  flex: 1;
+  padding: 50px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #ddd;
+  box-shadow: inset -1px 0 2px rgba(0, 0, 0, 0.05);
+}
+
+.form-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #1a237e;
+  margin-bottom: 40px;
+}
+
+.form-container h2 span {
+  color: #1a237e;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+}
+
+form input {
+  margin-bottom: 20px;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 2px 2px 5px #ccc;
+  font-size: 14px;
+  color: #333;
+}
+
+form input::placeholder {
+  letter-spacing: 1px;
+  color: #999;
+}
+
+form button {
+  background-color: #ff8661;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #ccc;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #ff7043;
+}
+
+.login-link {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #1a237e;
+}
+
+.login-link a {
+  color: #1a237e;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.image-container {
+  flex: 1;
+  background-color: #ff8661;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.image-container h3 {
+  font-size: 22px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

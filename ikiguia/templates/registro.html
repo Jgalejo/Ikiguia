@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro - Ikiguía</title>
+  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2>Comienza tu camino<br><span>con Ikiguía</span></h2>
+      <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="nombre" placeholder="Nombre Completo" required>
+        <input type="email" name="correo" placeholder="Correo Electrónico" required>
+        <input type="password" name="contraseña" placeholder="Contraseña" required>
+        <input type="password" name="confirmar_contraseña" placeholder="Confirmar Contraseña" required>
+        <button type="submit">Registrarme</button>
+      </form>
+      <p class="login-link">¿Ya tienes una cuenta? <a href="{% url 'login' %}">Iniciar sesión</a></p>
+    </div>
+
+    <div class="image-container">
+      <h3>Tu futuro comienza hoy con Ikigüía</h3>
+      <img src="{% static 'img/registro-ilustracion.png' %}" alt="Ilustración registro">
+    </div>
+  </div>
+</body>
+</html>
