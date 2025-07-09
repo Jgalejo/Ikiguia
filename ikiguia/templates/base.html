@@ -6,12 +6,14 @@
   <meta charset="UTF-8">
   <title>Ikiguía</title>
   <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+  
+  <!-- Bloque para CSS específico de cada página -->
+  {% block extra_css %}{% endblock %}
 </head>
 <body>
   <header>
     {% block nav %}
     <h1>Ikiguía</h1>
-    
     
     <nav>
       <a href="{% url 'home' %}">Inicio</a>
@@ -30,13 +32,10 @@
       {% endif %}
     </nav>
     {% endblock %}
-    
   </header>
 
   <main>
     {% block content %}{% endblock %}
   </main>
-
-
 </body>
 </html>
