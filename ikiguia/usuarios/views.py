@@ -34,6 +34,9 @@ def contacto(request):
 def Qsomos(request):
     return render(request, 'QSomos.html')
 
+def Privacidad(request):
+    return render(request, 'Privacidad.html')
+
 
 def iniciar_sesion(request):
     if request.method == 'POST':

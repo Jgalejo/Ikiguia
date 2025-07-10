@@ -21,7 +21,7 @@
       <button type="submit" class="btn-iniciar">Iniciar Sesión</button>
     </form>
     <div class="acciones">
-      <a href="#" class="olvido">&#xbf;Olvidaste tu contraseña?</a><br>
+      <a href="{% url 'password_reset' %}" class="olvido">&#xbf;Olvidaste tu contraseña?</a><br>
       <a href="{% url 'registro' %}" class="registro">&#xbf;No tienes cuenta? Registrarse</a>
     </div>
   </div>

@@ -12,5 +12,7 @@ urlpatterns = [
     path('carreras/', views.carreras_recomendadas, name='carreras'),
     path('contacto/', views.contacto, name='contacto'),
     path('q-somos/', views.Qsomos, name='QSomos'),
+    path('priv/', views.Privacidad, name='privacidad'),
+
 
 ]
