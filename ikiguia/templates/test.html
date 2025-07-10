@@ -1,34 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block nav %}{% endblock %}
-
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/test.css' %}">
+  <link rel="stylesheet" href="{% static 'css/test_psicometrico.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="test-container">
   <div class="test-header">
     <h2>Test Vocacional</h2>
-    <p class="test-subtitle">Descubre tu orientación profesional respondiendo las siguientes preguntas</p>
+    <p class="test-subtitle">Descubre tu orientación profesional paso a paso</p>
   </div>
-  
-  <div class="test-form-wrapper">
-    <form method="post" class="test-form">
-      {% csrf_token %}
-      
-      <div class="form-content">
-        {{ form.as_p }}
-      </div>
-      
-      <div class="form-actions">
-        <button type="submit" class="submit-btn">
-          <span class="btn-text">Enviar respuestas</span>
-          <span class="btn-icon">→</span>
-        </button>
-      </div>
-    </form>
+
+  <!-- Barra de progreso -->
+  <div class="progress-wrapper">
+    <div class="progress-bar" id="progressBar"></div>
   </div>
+
+  <form id="vocacionalForm" method="post" class="test-form">
+    {% csrf_token %}
+    <div class="steps">
+      {% for field in form %}
+        <div class="step">
+          <label class="question-label">{{ field.label }}</label>
+          <div class="options">
+            {{ field }}
+            {% if field.errors %}
+              <ul class="errorlist">
+                {% for err in field.errors %}<li>{{ err }}</li>{% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="form-actions">
+      <button type="button" id="prevBtn" class="nav-btn">← Anterior</button>
+      <button type="button" id="nextBtn" class="nav-btn">Siguiente →</button>
+      <button type="submit" id="submitBtn" class="submit-btn">Enviar respuestas</button>
+    </div>
+  </form>
 </div>
+
+<script src="{% static 'js/psicometrico.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,145 @@
+:root {
+  --blue:   #2c5aa0;
+  --orange: #ff6b35;
+  --light:  #f4f4f4;
+  --dark:   #333;
+  --radius: 8px;
+  --trans:  all 0.3s ease;
+}
+
+body {
+  background: var(--light);
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.test-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.test-header {
+  background: var(--blue);
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.test-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.test-subtitle {
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
+
+/* Progress */
+.progress-wrapper {
+  background: #ddd;
+  height: 6px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--orange);
+  transition: width 0.4s ease;
+}
+
+/* Steps */
+.steps .step {
+  display: none;
+  padding: 1.5rem;
+}
+
+.steps .step.active {
+  display: block;
+}
+
+.question-label {
+  font-weight: bold;
+  color: var(--dark);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* Opciones de radio */
+.options {
+  padding-left: 1rem;
+}
+
+.options .form-check {
+  margin-bottom: 0.75rem;
+}
+
+/* Navegación */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: #fafafa;
+}
+
+.nav-btn,
+.submit-btn {
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--trans);
+
+  /* Anulación de estilos nativos y sombras */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-clip: padding-box;
+  box-shadow: none !important;
+  outline: none !important;
+  text-shadow: none;
+  filter: none;
+}
+
+.nav-btn {
+  background: var(--blue);
+  color: #fff;
+}
+.nav-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.submit-btn {
+  background: var(--orange);
+  color: #fff;
+  display: none;
+}
+.submit-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Errores */
+.errorlist {
+  color: #c00;
+  margin-top: 0.5rem;
+}
+.errorlist li {
+  list-style: none;
+}
+
+/* Además, asegura que no se vea sombra al hacer foco o click */
+.nav-btn:focus,
+.nav-btn:active,
+.submit-btn:focus,
+.submit-btn:active {
+  box-shadow: none !important;
+  outline: none !important;
+}

@@ -1,9 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block nav %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/ikigai_test.css' %}">
+
+{% endblock %}
+ 
 {% block content %}
+<div class="ikigai-form-container">
   <h2>Test IKIGAI 🧭</h2>
-  <form method="post">
+
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+
+  <form method="post" id="ikigaiForm">
     {% csrf_token %}
+    
     {{ form.as_p }}
-    <button type="submit">Enviar respuestas</button>
+
+    <div class="form-navigation-buttons">
+     
+      <button type="button" id="nextBtn">Siguiente</button>
+    </div>
+
+    <button type="submit" id="submitBtn" style="display:none;">Enviar respuestas</button>
   </form>
+</div>
+
+<script src="{% static 'js/ikigai_form.js' %}"></script>
 {% endblock %}

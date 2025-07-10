@@ -414,7 +414,7 @@ li:nth-child(5) { --index: 4; }
 }
 
 .logout-button {
-  background-color: #1A237E;
+  background-color: #FF8A65 ;
   color: white;
   border: none;
   padding: 6px 16px;
@@ -425,10 +425,10 @@ li:nth-child(5) { --index: 4; }
   white-space: nowrap;
   width: auto;
   height: auto;
-  display: inline-block; /* evita que se estire al 100% */
+  display: inline-block; 
 }
 .logout-button:hover {
-  background-color: #FF8A65;
+  background-color: #b765ff;
 }
 
 
