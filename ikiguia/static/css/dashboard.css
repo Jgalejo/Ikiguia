@@ -401,3 +401,34 @@ li:nth-child(5) { --index: 4; }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-orange);
 }
+
+.logout-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+  padding-right: 0rem;
+}
+
+.logout-container form {
+  display: inline; /* evita que el formulario sea bloque completo */
+}
+
+.logout-button {
+  background-color: #1A237E;
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  font-size: 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  width: auto;
+  height: auto;
+  display: inline-block; /* evita que se estire al 100% */
+}
+.logout-button:hover {
+  background-color: #FF8A65;
+}
+
+

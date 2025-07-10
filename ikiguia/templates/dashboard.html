@@ -7,8 +7,18 @@
 {% endblock %}
 
 {% block content %}
+<div class="logout-container">
+  <form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="logout-button">Cerrar sesión</button>
+  </form>
+</div>
+
+
 <div class="content-wrapper">
-  <h2>Bienvenido, {{ user.username }} 🎉</h2>
+   
+  <h2>Bienvenido, {{ user.first_name }} 🎉</h2>
+ 
   <p>Este es tu panel personal. Pronto podrás acceder a tus tests y resultados.</p>
   
   {% if user.testresult_set.last %}

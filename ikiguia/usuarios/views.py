@@ -10,8 +10,14 @@ from .forms import IkigaiForm
 from .models import IkigaiResult
 from .models import Carrera
 from django.db.models import Q
-
-
+from .forms import CustomUserCreationForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from .forms import TestForm, IkigaiForm, CustomUserCreationForm
+from .models import TestResult, IkigaiResult, Carrera
+from django.db.models import Q
 
 
 def home(request):
@@ -19,12 +25,12 @@ def home(request):
 
 def registro(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     return render(request, 'registro.html', {'form': form})
 
 
@@ -47,6 +53,9 @@ def iniciar_sesion(request):
             return redirect('dashboard')
     else:
         form = AuthenticationForm()
+
+    form.fields['username'].label = 'Correo Electrónico'
+    
     return render(request, 'login.html', {'form': form})
 
 def cerrar_sesion(request):

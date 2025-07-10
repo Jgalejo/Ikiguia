@@ -1,4 +1,7 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
 
 PREGUNTAS = [
     ("pregunta1", "Me gusta trabajar en equipo"),
@@ -62,3 +65,36 @@ class IkigaiForm(forms.Form):
         label="¿Qué causa te motiva profundamente?",
         widget=forms.Textarea(attrs={'rows': 2})
     )
+
+
+class CustomUserCreationForm(UserCreationForm):
+    # Campos del modelo User que queremos usar y personalizar
+    email = forms.EmailField(required=True, label="Correo Electrónico")
+    first_name = forms.CharField(required=True, label="Nombres")
+    
+    # Nuestro campo personalizado del modelo Profile
+    fecha_de_nacimiento = forms.DateField(
+        label="Fecha de Nacimiento",
+        required=True,
+        widget=forms.DateInput(attrs={'type': 'date'}) # Para un selector de fecha amigable
+    )
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ('first_name', 'email', 'fecha_de_nacimiento')
+    def save(self, commit=True):
+        # Hacemos que el username sea el mismo que el email
+        user = super().save(commit=False)
+        user.username = self.cleaned_data["email"]
+        user.email = self.cleaned_data["email"]
+        user.first_name = self.cleaned_data["first_name"]
+        
+        if commit:
+            user.save()
+            # Guardamos los datos extra en el perfil del usuario
+            profile = user.profile
+            profile.fecha_de_nacimiento = self.cleaned_data["fecha_de_nacimiento"]
+            profile.save()
+            
+        return user    
+
